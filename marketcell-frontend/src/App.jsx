@@ -11,11 +11,13 @@ import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
 import Orders from './pages/Orders';
 import SellerOrders from './pages/seller/SellerOrders';
+import AdminPanel from './pages/admin/AdminPanel';
 
 const ProtectedRoute = ({ children, role }) => {
   const { isLoggedIn, user } = useAuthStore();
   if (!isLoggedIn) return <Navigate to="/login" />;
   if (role === 'seller' && !user?.is_seller) return <Navigate to="/" />;
+  if (role === 'admin' && !user?.is_admin) return <Navigate to="/" />;
   return children;
 };
 
@@ -36,6 +38,7 @@ export default function App() {
           <Route path="/orders"            element={<ProtectedRoute><Orders /></ProtectedRoute>} />
           <Route path="/seller/orders"     element={<ProtectedRoute role="seller"><SellerOrders /></ProtectedRoute>} />
           <Route path="/seller/products" element={<ProtectedRoute role="seller"><SellerProducts /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute role="admin"><AdminPanel /></ProtectedRoute>} />
         </Routes>
       </main>
     </Router>

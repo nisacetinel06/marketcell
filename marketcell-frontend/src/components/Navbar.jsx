@@ -18,38 +18,72 @@ export default function Navbar() {
         <Link to="/" className="font-semibold text-lg text-purple-700">
           MarketCell
         </Link>
+
         <Link to="/" className="text-sm text-gray-600 hover:text-gray-900">
           Ürünler
         </Link>
+
         <div className="ml-auto flex items-center gap-4">
           {isLoggedIn ? (
             <>
               {user?.is_seller && (
-                <Link to="/seller/orders" className="text-sm text-gray-600 hover:text-gray-900">
+                <Link
+                  to="/seller/orders"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
                   Satıcı Paneli
                 </Link>
               )}
-              <Link to="/orders" className="text-sm text-gray-600 hover:text-gray-900">
+
+              {user?.is_admin && (
+                <Link
+                  to="/admin"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  Admin
+                </Link>
+              )}
+
+              <Link
+                to="/orders"
+                className="text-sm text-gray-600 hover:text-gray-900"
+              >
                 Siparişlerim
               </Link>
-              <Link to="/cart" className="relative text-sm text-gray-600 hover:text-gray-900">
+
+              <Link
+                to="/cart"
+                className="relative text-sm text-gray-600 hover:text-gray-900"
+              >
                 Sepet
+
                 {itemCount > 0 && (
                   <span className="absolute -top-2 -right-3 bg-purple-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                     {itemCount}
                   </span>
                 )}
               </Link>
-              <button onClick={handleLogout} className="text-sm text-gray-500 hover:text-red-600">
+
+              <button
+                onClick={handleLogout}
+                className="text-sm text-gray-500 hover:text-red-600"
+              >
                 Çıkış
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-sm text-gray-600 hover:text-gray-900">
+              <Link
+                to="/login"
+                className="text-sm text-gray-600 hover:text-gray-900"
+              >
                 Giriş
               </Link>
-              <Link to="/register" className="text-sm bg-purple-600 text-white px-3 py-1.5 rounded-lg hover:bg-purple-700">
+
+              <Link
+                to="/register"
+                className="text-sm bg-purple-600 text-white px-3 py-1.5 rounded-lg hover:bg-purple-700"
+              >
                 Kayıt Ol
               </Link>
             </>
