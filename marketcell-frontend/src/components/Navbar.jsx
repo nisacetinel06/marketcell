@@ -45,6 +45,13 @@ export default function Navbar() {
               )}
 
               <Link
+                to="/addresses"
+                className="text-sm text-gray-600 hover:text-gray-900"
+              >
+                Adreslerim
+              </Link>
+
+              <Link
                 to="/orders"
                 className="text-sm text-gray-600 hover:text-gray-900"
               >

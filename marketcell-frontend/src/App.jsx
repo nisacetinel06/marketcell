@@ -12,6 +12,7 @@ import OrderSuccess from './pages/OrderSuccess';
 import Orders from './pages/Orders';
 import SellerOrders from './pages/seller/SellerOrders';
 import AdminPanel from './pages/admin/AdminPanel';
+import Addresses from './pages/Addresses';
 
 const ProtectedRoute = ({ children, role }) => {
   const { isLoggedIn, user } = useAuthStore();
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/seller/orders"     element={<ProtectedRoute role="seller"><SellerOrders /></ProtectedRoute>} />
           <Route path="/seller/products" element={<ProtectedRoute role="seller"><SellerProducts /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute role="admin"><AdminPanel /></ProtectedRoute>} />
+          <Route path="/addresses" element={<ProtectedRoute><Addresses /></ProtectedRoute>} />
         </Routes>
       </main>
     </Router>
