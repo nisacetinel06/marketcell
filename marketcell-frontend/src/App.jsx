@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
-
+import SellerProducts from './pages/seller/SellerProducts';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -25,6 +25,7 @@ export default function App() {
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 py-6">
         <Routes>
+          
           <Route path="/"                  element={<Products />} />
           <Route path="/products/:id"      element={<ProductDetail />} />
           <Route path="/login"             element={<Login />} />
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/order-success/:id" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
           <Route path="/orders"            element={<ProtectedRoute><Orders /></ProtectedRoute>} />
           <Route path="/seller/orders"     element={<ProtectedRoute role="seller"><SellerOrders /></ProtectedRoute>} />
+          <Route path="/seller/products" element={<ProtectedRoute role="seller"><SellerProducts /></ProtectedRoute>} />
         </Routes>
       </main>
     </Router>
