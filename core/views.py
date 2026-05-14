@@ -1,10 +1,20 @@
-from rest_framework import status, generics
+from rest_framework import status, generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.db.models import Q
-from .models import User, Product
-from .serializers import UserSerializer, ProductSerializer
+from django.db import transaction
+from django.core.exceptions import ValidationError
+
+from .models import (
+    User, Product, Cart, CartItem, ProductVariant, 
+    Order, SubOrder, OrderItem, Store, Category, 
+    ProductStatus, SubOrderStatus
+)
+from .serializers import (
+    UserSerializer, ProductSerializer, CartSerializer, 
+    CategorySerializer, OrderSerializer, SubOrderSerializer
+)
 
 # --- AUTH VIEWS ---
 class RegisterView(APIView):
@@ -65,12 +75,6 @@ class ProductListView(generics.ListAPIView):
             
         return queryset
 
-from django.shortcuts import get_object_or_404
-from rest_framework import permissions
-from django.db import transaction
-from django.core.exceptions import ValidationError
-from .models import Cart, CartItem, ProductVariant, Order, SubOrder, OrderItem, Store, Category, ProductStatus, SubOrderStatus
-from .serializers import CartSerializer, CategorySerializer, OrderSerializer, SubOrderSerializer
 
 class CategoryListView(generics.ListAPIView):
     serializer_class = CategorySerializer
